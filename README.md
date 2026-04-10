@@ -83,10 +83,10 @@ If linking fails with undefined `__start_thread_ctrl_slot` / `__stop_thread_ctrl
         KEEP(*(SORT(.rti_fn*)))
         __rt_init_end = .;
 
-        /******************************************************************/
-        /* thread_manager ROM tables; INCLUDE path relative to BSP root */
-        INCLUDE packages/thread_manager/thread.ld
-        /******************************************************************/
+        /****************************************************************************************************************/
+        /* 🔔🔔🔔🔔🔔🔔thread_manager ROM tables; INCLUDE path is relative to BSP root (scons link cwd) 🔔🔔🔔🔔🔔*/
+        INCLUDE packages/thread_manager-latest/thread.ld
+        /****************************************************************************************************************/
 
         . = ALIGN(4);
 

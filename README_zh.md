@@ -83,7 +83,7 @@ bsp\nrf5x\nrf52840\board\linker_scripts\link.lds
 
         /****************************************************************************************************************/
         /* 🔔🔔🔔🔔🔔🔔thread_manager ROM tables; INCLUDE path is relative to BSP root (scons link cwd) 🔔🔔🔔🔔🔔*/
-        INCLUDE packages/thread_manager/thread.ld
+        INCLUDE packages/thread_manager-latest/thread.ld
         /****************************************************************************************************************/
 
         . = ALIGN(4);
@@ -107,7 +107,7 @@ bsp\nrf5x\nrf52840\board\linker_scripts\link.lds
 
 ### 5.5 thread_xxx 脚本生成thread_file_gen.py工具
 
-[THREAD_FILE_GEN](.\doc\THREAD_FILE_GEN.md)
+[THREAD_FILE_GEN](./doc/THREAD_FILE_GEN.md)
 
 
 ```bash
@@ -138,7 +138,7 @@ python thread_file_gen.py sensor --integrate --thread-config-h E:/path/to/thread
 
 ## 7. 理论文档
 
-[THREAD_MSG_TOPIC_PUBSUB](.\doc\THREAD_MSG_TOPIC_PUBSUB.md)
+[THREAD_MSG_TOPIC_PUBSUB](./doc/THREAD_MSG_TOPIC_PUBSUB.md)
 
 
 ## 8. 许可协议
