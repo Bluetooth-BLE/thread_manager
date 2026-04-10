@@ -7,37 +7,35 @@
 # 2026-04-07     John       first version
 
 
-import os
 from building import *
 
-cwd     = GetCurrentDir()
-src_dir = os.path.join(cwd, 'src')
-inc_dir = os.path.join(cwd, 'inc')
+cwd = GetCurrentDir()
 
-src = [
-    os.path.join(src_dir, 'thread.c'),
-    os.path.join(src_dir, 'thread_msg.c'),
-    os.path.join(src_dir, 'thread_manager.c'),
+CPPPATH = [
+    os.path.join(cwd, 'inc'),
+    os.path.join(cwd, 'samples'),
+    os.path.join(cwd, '..', 'event_loop', 'inc'),
 ]
 
-if GetDepend('THREAD_SYSTEM_READY'):
-    src.append(os.path.join(src_dir, 'thread_sysready.c'))
+src = Split('''
+    src/thread.c
+    src/thread_msg.c
+    src/thread_manager.c
+''')
 
-samples_dir = os.path.join(cwd, 'samples')
-if GetDepend('THREAD_MANAGER_USING_SAMPLES'):
-    src += [
-        os.path.join(samples_dir, 'thread_test.c'),
-        os.path.join(samples_dir, 'thread_test1.c'),
-        os.path.join(samples_dir, 'thread_test2.c'),
-    ]
+if GetDepend(['THREAD_SYSTEM_READY']):
+    src += Glob('src/thread_sysready.c')
 
-cpppath = [inc_dir, samples_dir, os.path.join(cwd, '..', 'event_loop', 'inc')]
+if GetDepend(['THREAD_MANAGER_USING_SAMPLES']):
+    src += Glob('samples/thread_test.c')
+    src += Glob('samples/thread_test1.c')
+    src += Glob('samples/thread_test2.c')
 
 group = DefineGroup(
     'thread_manager',
     src,
     depend  = ['PKG_USING_THREAD_MANAGER'],
-    CPPPATH = cpppath,
+    CPPPATH = CPPPATH,
 )
 
 Return('group')
