@@ -13,7 +13,7 @@
 - **Manager thread** — Startup handshake (`start_sem` + events), optional **system-ready** broadcast, and exit coordination.
 - **Message dispatch** — `THREAD_MSG_REGISTRY_ENTRY(sub, pub, msg_id, cb, active)` lives in ROM; at boot it is copied to RAM so `subscribe_active` can change at runtime; `thread_msg_registry_dispatch_message()` matches `head.publisher_task` and `head.msg_id`.
 - **Forwarding** — After sorting, the indexed path is about `O(log n)`; if the RAM index cannot be built, dispatch falls back to a linear scan of the ROM table.
-- **Delayed events** — `thread_evt_send_delayed_by_task_id()` uses a fixed pool of soft-timer slots (`THREAD_DELAYED_MAX`).
+- **Delayed events** — `thread_evt_send_delayed_by_task_id()`.
 - **Samples** (optional) — `thread_test` / `thread_test1` / `thread_test2` demonstrate cross-subscription.
 
 ## 3. Directory structure

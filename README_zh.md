@@ -13,7 +13,7 @@
 - **管理线程** — 启动握手（`start_sem` + 事件）、可选的 **system-ready** 广播、退出协调。
 - **消息分发** — `THREAD_MSG_REGISTRY_ENTRY(sub, pub, msg_id, cb, active)` 在 ROM；启动时拷贝到 RAM 以便运行时修改 `subscribe_active`；`thread_msg_registry_dispatch_message()` 按 `head.publisher_task` 与 `head.msg_id` 匹配。
 - **转发** — 排序后走索引路径约 `O(log n)`；若 RAM 索引建立失败则回退为线性扫描 ROM 表。
-- **延迟事件** — `thread_evt_send_delayed_by_task_id()` 使用固定数量的软定时器槽（`THREAD_DELAYED_MAX`）。
+- **延迟事件** — `thread_evt_send_delayed_by_task_id()`。
 - **示例**（可选）— `thread_test` / `thread_test1` / `thread_test2` 演示交叉订阅。
 
 ## 3. 目录结构
